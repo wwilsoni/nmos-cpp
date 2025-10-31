@@ -7,7 +7,7 @@ class NmosCppConan(ConanFile):
     package_type = "library"
 
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False]}
+    options = {"shared": True}
     default_options = {"shared": False}
 
     exports_sources = "CMakeLists.txt", "src/*", "include/*", "Development/*"
