@@ -23,12 +23,12 @@ class NmosCppConan(ConanFile):
     ]
 
     def layout(self):
-        cmake_layout(self, src_folder="src")
+        cmake_layout(self)
         print(">>> [layout] source_folder:", self.source_folder)
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure()
+        cmake.configure(build_script_folder="src")
         cmake.build()
         print(">>> [build] source_folder:", self.source_folder)
 
