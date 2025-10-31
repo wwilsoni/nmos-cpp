@@ -11,7 +11,7 @@ class NmosCppConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = {"shared": False}
 
-    exports_sources = "src/*", "CMakeLists.txt", "cmake/*", "include/*"
+    exports_sources = "src", "CMakeLists.txt", "cmake/*", "include/*"
     generators = "CMakeDeps", "CMakeToolchain"
     requires = [
         "boost/1.83.0",
