@@ -11,7 +11,7 @@ class NmosCppConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = {"shared": False}
 
-    exports_sources = "CMakeLists.txt", "src/*", "include/*", "Development/*"
+    exports_sources = "CMakeLists.txt", "src/*", "include/*"
     generators = "CMakeDeps", "CMakeToolchain"
     requires = [
         "boost/1.83.0",
@@ -28,7 +28,7 @@ class NmosCppConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure(build_script_folder=os.path.join(self.source_folder, "src"))
+        cmake.configure(build_script_folder="src")
         cmake.build()
         print(">>> Source folder:", self.source_folder)
 
