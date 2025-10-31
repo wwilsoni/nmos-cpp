@@ -5,6 +5,10 @@ class NmosCppConan(ConanFile):
     version = "4.12.0"
     package_type = "library"
     settings = "os", "compiler", "build_type", "arch"
+
+    options = {"shared": [True, False]}
+    default_options = {"shared": False}
+
     exports_sources = "Development/*"
     generators = "CMakeDeps", "CMakeToolchain"
     requires = [
