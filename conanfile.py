@@ -1,13 +1,14 @@
 from conan import ConanFile
 from conan.tools.cmake import CMake, cmake_layout
 
+
 class NmosCppConan(ConanFile):
     name = "nmos-cpp"
     version = "4.12.0"
     package_type = "library"
 
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": True}
+    options = {"shared": [True, False]}
     default_options = {"shared": False}
 
     exports_sources = "CMakeLists.txt", "src/*", "include/*", "Development/*"
@@ -20,9 +21,6 @@ class NmosCppConan(ConanFile):
         "json-schema-validator/2.1.0",
         "spdlog/1.12.0"
     ]
-
-    def layout(self):
-        self.folders.source = "Development"
 
     def layout(self):
         cmake_layout(self)
