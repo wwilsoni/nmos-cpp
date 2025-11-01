@@ -1,6 +1,8 @@
 from conan import ConanFile
 from conan.tools.cmake import CMake, cmake_layout
 import os
+print(">>> source_folder:", self.source_folder)
+print(">>> contents:", os.listdir(self.source_folder))
 
 class NmosCppConan(ConanFile):
     name = "nmos-cpp"
@@ -11,7 +13,7 @@ class NmosCppConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = {"shared": False}
 
-    exports_sources = "src", "cmake/*", "include/*"
+    exports_sources = "CMakeList.txt", "src/*", "cmake/*", "include/*"
     generators = "CMakeDeps", "CMakeToolchain"
     requires = [
         "boost/1.83.0",
@@ -24,18 +26,18 @@ class NmosCppConan(ConanFile):
 
     def layout(self):
         cmake_layout(self)
-        print(">>> [layout] source_folder:", self.source_folder)
+
 
     def build(self):
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
-        print(">>> [build] source_folder:", self.source_folder)
+
 
     def package(self):
         cmake = CMake(self)
         cmake.install()
-        print(">>> [package] source_folder:", self.source_folder)
+
 
     def package_info(self):
         print(">>> [package_info] package_folder:", self.package_folder)
