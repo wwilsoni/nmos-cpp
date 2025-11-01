@@ -1,8 +1,7 @@
 from conan import ConanFile
 from conan.tools.cmake import CMake, cmake_layout
 import os
-print(">>> source_folder:", self.source_folder)
-print(">>> contents:", os.listdir(self.source_folder))
+
 
 class NmosCppConan(ConanFile):
     name = "nmos-cpp"
