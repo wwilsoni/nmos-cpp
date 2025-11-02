@@ -20,6 +20,10 @@ class NmosCppConan(ConanFile):
         "jwt-cpp/0.7.1",
     ]
 
+    overrides = {
+        "json-schema-validator/2.1.0": "json-schema-validator/2.1.0@local/testing"
+    }
+
     def layout(self):
         cmake_layout(self, src_folder="Development")
 
