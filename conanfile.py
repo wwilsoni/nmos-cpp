@@ -36,14 +36,10 @@ class NmosCppConan(ConanFile):
         cmake.install()
 
     def package_info(self):
-        # Export a proper CMake package
         self.cpp_info.set_property("cmake_file_name", "nmos-cpp")
         self.cpp_info.set_property("cmake_target_name", "nmos-cpp::nmos-cpp")
-
-        # Libraries to link (adjust if your CMake actually produces a different name)
         self.cpp_info.libs = ["nmos-cpp"]
 
-        # Propagate dependencies downstream
         self.cpp_info.requires = [
             "boost::boost",
             "cpprestsdk::cpprest",
@@ -52,4 +48,5 @@ class NmosCppConan(ConanFile):
             "nlohmann_json_schema_validator::nlohmann_json_schema_validator",
             "jwt-cpp::jwt-cpp"
         ]
+
 
