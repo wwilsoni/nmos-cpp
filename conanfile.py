@@ -41,14 +41,27 @@ class NmosCppConan(ConanFile):
         cmake.install()
 
     def package_info(self):
+        # Main target
         self.cpp_info.set_property("cmake_file_name", "nmos-cpp")
         self.cpp_info.set_property("cmake_target_name", "nmos-cpp::nmos-cpp")
 
-        # Main library
+        # Libraries to link
         self.cpp_info.libs = ["nmos-cpp"]
 
-        # Extra component for compile settings
+        # Propagate include dirs and dependencies
+        self.cpp_info.includedirs = ["include"]
+        self.cpp_info.requires = [
+            "boost::boost",
+            "cpprestsdk::cpprest",
+            "websocketpp::websocketpp",
+            "openssl::openssl",
+            "nlohmann_json_schema_validator::nlohmann_json_schema_validator",
+            "jwt-cpp::jwt-cpp"
+        ]
+
+        # Optional compile-settings component
         self.cpp_info.components["compile-settings"].set_property(
             "cmake_target_name", "nmos-cpp::compile-settings"
         )
+
 
