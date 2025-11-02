@@ -40,17 +40,20 @@ class NmosCppConan(ConanFile):
         cmake.install()
 
     def package_info(self):
+        # Core library
         self.cpp_info.set_property("cmake_file_name", "nmos-cpp")
         self.cpp_info.set_property("cmake_target_name", "nmos-cpp::nmos-cpp")
         self.cpp_info.libs = ["nmos-cpp"]
 
+        # Dependencies
         self.cpp_info.requires = [
             "boost::boost",
             "cpprestsdk::cpprest",
             "websocketpp::websocketpp",
             "openssl::openssl",
-            "json-schema-validator::nlohmann_json_schema_validator",
+            "json-schema-validator::nlohmann_json_schema_validator",  # 👈 alias mapping
             "jwt-cpp::jwt-cpp"
         ]
+
 
 
