@@ -12,11 +12,11 @@ class NmosCppConan(ConanFile):
 
     exports_sources = "CMakeLists.txt", "Development/*", "cmake/*", "LICENSE", "NOTICE", "README.md"
     requires = [
+        "json-schema-validator/2.1.0@local/testing",
         "boost/1.83.0",
         "cpprestsdk/2.10.18",
         "websocketpp/0.8.2",
         "openssl/3.1.3",
-        "json-schema-validator/2.1.0",
         "jwt-cpp/0.7.1",
     ]
 
@@ -41,9 +41,13 @@ class NmosCppConan(ConanFile):
 
     def package_info(self):
         # Core library
-        self.cpp_info.set_property("cmake_file_name", "nmos-cpp")
-        self.cpp_info.set_property("cmake_target_name", "nmos-cpp::nmos-cpp")
-        self.cpp_info.libs = ["nmos-cpp"]
+        # self.cpp_info.set_property("cmake_file_name", "nmos-cpp")
+        # self.cpp_info.set_property("cmake_target_name", "nmos-cpp::nmos-cpp")
+        #
+        # self.cpp_info.libs = ["nmos-cpp"]
+        self.cpp_info.set_property("cmake_file_name", "nlohmann_json_schema_validator")
+        self.cpp_info.set_property("cmake_target_name","nlohmann_json_schema_validator::nlohmann_json_schema_validator")
+        self.cpp_info.libs = ["nlohmann_json_schema_validator"]
 
         # Dependencies
         self.cpp_info.requires = [
