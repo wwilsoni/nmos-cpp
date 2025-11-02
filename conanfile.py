@@ -1,7 +1,5 @@
 from conan import ConanFile
 from conan.tools.cmake import CMake, cmake_layout
-import os
-
 
 class NmosCppConan(ConanFile):
     name = "nmos-cpp"
@@ -13,7 +11,6 @@ class NmosCppConan(ConanFile):
     default_options = {"shared": False}
 
     exports_sources = "CMakeLists.txt", "Development/*", "cmake/*", "LICENSE", "NOTICE", "README.md"
-    generators = "CMakeDeps", "CMakeToolchain"
     requires = [
         "boost/1.83.0",
         "cpprestsdk/2.10.18",
@@ -30,11 +27,9 @@ class NmosCppConan(ConanFile):
         cmake = CMake(self)
         cmake.configure(variables={
             "BUILD_TESTING": "OFF",
-            "NMOS_CPP_BUILD_TESTS": "OFF"  # if supported
+            "NMOS_CPP_BUILD_TESTS": "OFF"
         })
-        # Only build the deliverables you need
-        cmake.build(target="nmos-cpp-registry")
-        cmake.build(target="nmos-cpp-node")
+        cmake.build()
 
     def package(self):
         cmake = CMake(self)
@@ -45,11 +40,10 @@ class NmosCppConan(ConanFile):
         self.cpp_info.set_property("cmake_file_name", "nmos-cpp")
         self.cpp_info.set_property("cmake_target_name", "nmos-cpp::nmos-cpp")
 
-        # Libraries to link
+        # Libraries to link (adjust if your CMake installs a different name)
         self.cpp_info.libs = ["nmos-cpp"]
 
-        # Propagate include dirs and dependencies
-        self.cpp_info.includedirs = ["include"]
+        # Propagate dependencies
         self.cpp_info.requires = [
             "boost::boost",
             "cpprestsdk::cpprest",
@@ -58,10 +52,3 @@ class NmosCppConan(ConanFile):
             "nlohmann_json_schema_validator::nlohmann_json_schema_validator",
             "jwt-cpp::jwt-cpp"
         ]
-
-        # Optional compile-settings component
-        self.cpp_info.components["compile-settings"].set_property(
-            "cmake_target_name", "nmos-cpp::compile-settings"
-        )
-
-
