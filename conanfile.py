@@ -49,7 +49,7 @@ class NmosCppConan(ConanFile):
             "cpprestsdk::cpprest",
             "websocketpp::websocketpp",
             "openssl::openssl",
-            "nlohmann_json_schema_validator::nlohmann_json_schema_validator",
+            "json-schema-validator::nlohmann_json_schema_validator",
             "jwt-cpp::jwt-cpp"
         ]
 
