@@ -12,17 +12,13 @@ class NmosCppConan(ConanFile):
 
     exports_sources = "CMakeLists.txt", "Development/*", "cmake/*", "LICENSE", "NOTICE", "README.md"
     requires = [
-        "json-schema-validator/2.1.0@local/testing",
+        "json-schema-validator/2.1.0-patched@local/testing",
         "boost/1.83.0",
         "cpprestsdk/2.10.18",
         "websocketpp/0.8.2",
         "openssl/3.1.3",
         "jwt-cpp/0.7.1",
     ]
-
-    overrides = {
-        "json-schema-validator/2.1.0": "json-schema-validator/2.1.0@local/testing"
-    }
 
     def layout(self):
         cmake_layout(self, src_folder="Development")
