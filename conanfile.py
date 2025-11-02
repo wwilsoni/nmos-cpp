@@ -1,5 +1,5 @@
 from conan import ConanFile
-from conan.tools.cmake import CMake, cmake_layout
+from conan.tools.cmake import CMake, cmake_layout, CMakeToolchain
 
 class NmosCppConan(ConanFile):
     name = "nmos-cpp"
@@ -22,6 +22,10 @@ class NmosCppConan(ConanFile):
 
     def layout(self):
         cmake_layout(self, src_folder="Development")
+
+    def generate(self):
+        tc = CMakeToolchain(self)
+        tc.generate()
 
     def build(self):
         cmake = CMake(self)
