@@ -28,7 +28,7 @@ class NmosCppConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure(source_folder="Development")
+        cmake.configure()
         cmake.build()
 
     def package(self):
