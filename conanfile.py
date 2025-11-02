@@ -20,7 +20,7 @@ class NmosCppConan(ConanFile):
         "websocketpp/0.8.2",
         "openssl/3.1.3",
         "json-schema-validator/2.1.0",
-        "jwt-cpp/0.7.1"
+        "jwt-cpp/0.7.1",
     ]
 
     def layout(self):
@@ -43,3 +43,12 @@ class NmosCppConan(ConanFile):
     def package_info(self):
         self.cpp_info.set_property("cmake_file_name", "nmos-cpp")
         self.cpp_info.set_property("cmake_target_name", "nmos-cpp::nmos-cpp")
+
+        # Main library
+        self.cpp_info.libs = ["nmos-cpp"]
+
+        # Extra component for compile settings
+        self.cpp_info.components["compile-settings"].set_property(
+            "cmake_target_name", "nmos-cpp::compile-settings"
+        )
+
