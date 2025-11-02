@@ -54,6 +54,12 @@ class NmosCppConan(ConanFile):
             "json-schema-validator::nlohmann_json_schema_validator",  # 👈 alias mapping
             "jwt-cpp::jwt-cpp"
         ]
-
-
+        # 👇 Add this block
+        # Provide an alias so that find_package(nlohmann_json_schema_validator) works
+        self.cpp_info.components["nmoscpp"].set_property(
+            "cmake_find_package", "nlohmann_json_schema_validator"
+        )
+        self.cpp_info.components["nmoscpp"].set_property(
+            "cmake_find_package_multi", "nlohmann_json_schema_validator"
+        )
 
