@@ -12,7 +12,7 @@ class NmosCppConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = {"shared": False}
 
-    exports_sources = "CMakeLists.txt", "src/*", "cmake/*", "include/*"
+    exports_sources = "CMakeLists.txt", "Development/*", "cmake/*", "LICENSE", "NOTICE", "README.md"
     generators = "CMakeDeps", "CMakeToolchain"
     requires = [
         "boost/1.83.0",
@@ -24,20 +24,17 @@ class NmosCppConan(ConanFile):
     ]
 
     def layout(self):
-        cmake_layout(self)
-
+        cmake_layout(self, src_folder="Development")
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure()
+        cmake.configure(source_folder="Development")
         cmake.build()
-
 
     def package(self):
         cmake = CMake(self)
         cmake.install()
 
-
     def package_info(self):
-        print(">>> [package_info] package_folder:", self.package_folder)
-        self.cpp_info.libs = ["nmos-cpp"]
+        self.cpp_info.set_property("cmake_file_name", "nmos-cpp")
+        self.cpp_info.set_property("cmake_target_name", "nmos-cpp::nmos-cpp")
