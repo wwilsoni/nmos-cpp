@@ -20,7 +20,6 @@ class NmosCppConan(ConanFile):
         "websocketpp/0.8.2",
         "openssl/3.1.3",
         "json-schema-validator/2.1.0",
-        "spdlog/1.12.0",
         "jwt-cpp/0.7.1"
     ]
 
@@ -30,9 +29,12 @@ class NmosCppConan(ConanFile):
     def build(self):
         cmake = CMake(self)
         cmake.configure(variables={
-        "BUILD_TESTING": "OFF"
-    })
-        cmake.build()
+            "BUILD_TESTING": "OFF",
+            "NMOS_CPP_BUILD_TESTS": "OFF"  # if supported
+        })
+        # Only build the deliverables you need
+        cmake.build(target="nmos-cpp-registry")
+        cmake.build(target="nmos-cpp-node")
 
     def package(self):
         cmake = CMake(self)
