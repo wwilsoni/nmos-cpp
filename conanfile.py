@@ -29,7 +29,9 @@ class NmosCppConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure()
+        cmake.configure(variables={
+        "BUILD_TESTING": "OFF"
+    })
         cmake.build()
 
     def package(self):
