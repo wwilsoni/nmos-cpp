@@ -21,7 +21,7 @@ class NmosCppConan(ConanFile):
         "openssl/3.1.3",
         "json-schema-validator/2.1.0",
         "spdlog/1.12.0"
-        "jwt-cpp/0.7.0"
+        "jwt-cpp/0.7.1"
     ]
 
     def layout(self):
