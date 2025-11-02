@@ -20,7 +20,7 @@ class NmosCppConan(ConanFile):
         "websocketpp/0.8.2",
         "openssl/3.1.3",
         "json-schema-validator/2.1.0",
-        "spdlog/1.12.0"
+        "spdlog/1.12.0",
         "jwt-cpp/0.7.1"
     ]
 
